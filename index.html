@@ -1,0 +1,451 @@
+اجعل الشكل اكرث جمالية في هذا الموقع 
+وركز على الشكل في مكان note .
+اريد الكود كاملاً بعد التحديث .
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عروض أسعار كدابرا للربط</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --note-bg: #fff3e0;
+            --border-radius: 12px;
+        }
+
+        .dark-mode {
+            --primary-color: #ecf0f1;
+            --secondary-color: #2980b9;
+            --accent-color: #2ecc71;
+            --text-color: #ecf0f1;
+            --bg-color: #2c3e50;
+            --note-bg: #34495e;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        .service-section {
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .service-title {
+            color: var(--primary-color);
+            border-right: 4px solid var(--secondary-color);
+            padding-right: 15px;
+            margin: 0 0 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.4em;
+        }
+
+        .service-title img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .pricing-table th {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .pricing-table td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .pricing-table tr:hover {
+            background: rgba(0,0,0,0.03);
+        }
+
+        .currency-symbol {
+            color: var(--accent-color);
+            font-size: 0.8em;
+            margin-right: 3px;
+        }
+
+        .note {
+            background: var(--note-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            border-right: 4px solid var(--accent-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+            position: relative;
+        }
+
+        .note:hover {
+            transform: translateX(-5px);
+            box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+        }
+
+        .note::after {
+            content: "✔";
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: var(--accent-color);
+        }
+
+        .note.copied::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-table td, .pricing-table th {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .service-title {
+                font-size: 1.2em;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .service-title img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .dark-mode-toggle {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+
+        .service-section:nth-child(odd) {
+            border-right: 4px solid var(--secondary-color);
+        }
+
+        .service-section:nth-child(even) {
+            border-right: 4px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-mode-toggle">🌓 الوضع الليلي</button>
+    
+    <div class="container">
+        <!-- يويو -->
+        <div class="service-section">
+            <h2 class="service-title">
+                <img src="https://i.ibb.co/8dKwZyW/image.png" alt="شعار يويو">
+                شحن يويو 
+            </h2>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>الفئة</th>
+                        <th>سعر التكلفة (R.Y)</th>
+                        <th>سعر التكلفة (USD)</th> 
+                        <th>السعر المقترح (R.Y)</th>
+                        <th>السعر المقترح (USD)</th>
+                        <th>الربط الموحد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1000 كونزة</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">1000</td>
+                    </tr>
+                    <tr>
+                        <td>1500 كونزة</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">1500</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note">طريقة التسليم: شحن لحساب العميل مباشر (ربط مباشر)</div>
+            <div class="note">رقم الشبكة ( yo_o_y_ou ) انقر لنسخ الرقم</div>
+            <div class="note">الحقول المطلوبة الايدي id</div>
+        </div>
+
+        <!-- زينا لايف -->
+        <div class="service-section">
+            <h2 class="service-title">
+                <img src="https://i.ibb.co/8dKwZyW/image.png" alt="شعار زينا">
+                زينا لايف 
+            </h2>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>الفئة</th>
+                        <th>سعر التكلفة (R.Y)</th>
+                        <th>سعر التكلفة (USD)</th> 
+                        <th>السعر المقترح (R.Y)</th>
+                        <th>السعر المقترح (USD)</th>
+                        <th>الربط الموحد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10,000 كونزة</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">10000</td>
+                    </tr>
+                    <tr>
+                        <td>20000 كونزة</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">20000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note">طريقة التسليم: شحن لحساب العميل مباشر (ربط مباشر)</div>
+            <div class="note">رقم الشبكة ( yHA872uGA ) انقر لنسخ الرقم</div>
+            <div class="note">الحقول المطلوبة الايدي id</div>
+        </div>
+
+        <!-- شحن يوهو -->
+        <div class="service-section">
+            <h2 class="service-title">
+                <img src="https://i.ibb.co/8dKwZyW/image.png" alt="شعار يوهو">
+                شحن يوهو
+            </h2>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>الفئة</th>
+                        <th>سعر التكلفة (R.Y)</th>
+                        <th>سعر التكلفة (USD)</th> 
+                        <th>السعر المقترح (R.Y)</th>
+                        <th>السعر المقترح (USD)</th>
+                        <th>الربط الموحد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10,000 كونزة</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">10000</td>
+                    </tr>
+                    <tr>
+                        <td>20,000 كونزة</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">0</td>
+                        <td class="currency">20000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note">طريقة التسليم: شحن لحساب العميل مباشر ربط مباشر</div>
+            <div class="note">رقم الشبكة ( pubg ) انقر لنسخ الرقم</div>
+            <div class="note">الحقول المطلوبة الايدي id</div>
+        </div>
+    </div>
+    
+    
+    <center 
+    style="
+        border: 1px dashed rgba(30, 136, 99, 0.7);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+        background: 
+            linear-gradient(45deg, transparent 0 23px, rgba(30, 136, 99, 0.5) 23px 24px, transparent 24px) 0 0 / 20px 20px,
+            linear-gradient(-45deg, transparent 0 23px, rgba(30, 136, 99, 0.5) 23px 24px, transparent 24px) 20px 10px / 20px 20px;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        padding: 30px 15px;
+    "
+>
+    <h3 style="color: #00e676; font-weight: normal;">
+        تصميم وبرمجة Trend vip للتواصل
+        <a href="https://wa.me/+967783070700" itemprop="url" title="بدون اعلانات">
+            <span 
+                itemprop="name" 
+                style="
+                    font-size: 16px;
+                    color: #00b0ff;
+                    text-decoration: underline;
+                    padding-right: 5px;
+                "
+            >
+                انقر هنا
+            </span>
+        </a>
+    </h3>
+</center>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const exchangeRate = 560;
+            const serviceRates = {
+                "شحن يويو": { costPerUnit: 0.000787, suggestedPerUnit: 0.000848 },
+                "زينا لايف": { costPerUnit: 0.0005, suggestedPerUnit: 0.0006 },
+                "شحن يوهو": { costPerUnit: 0.0001079, suggestedPerUnit: 0.0001104 },
+            };
+
+            // تحسينات وظيفة النسخ
+            document.querySelectorAll('.note').forEach(note => {
+                note.addEventListener('click', async function() {
+                    const match = this.textContent.match(/\((.*?)\)/);
+                    if (!match) return;
+                    
+                    const text = match[1];
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        this.classList.add('copied');
+                        setTimeout(() => this.classList.remove('copied'), 2000);
+                    } catch (err) {
+                        alert('تعذر النسخ، يرجى المحاولة مرة أخرى');
+                    }
+                });
+            });
+
+            // وظيفة الوضع الليلي
+            function toggleDarkMode() {
+                document.body.classList.toggle('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                btn.textContent = document.body.classList.contains('dark-mode') 
+                    ? '🌓 ربط تطبيقات  vip' 
+                    : '🌓 ربط تطبيقات  vip';
+                localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+            }
+
+            // إضافة مستمع الأحداث للزر
+            document.querySelector('.dark-mode-toggle').addEventListener('click', toggleDarkMode);
+
+            // استعادة التفضيل عند التحميل
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.dark-mode-toggle').textContent = '🌞 الوضع النهاري';
+            }
+
+            // تحسينات وظائف الحساب
+            function extractNumber(text) {
+                const number = parseInt(text.replace(/[^\d]/g, '')) || 0;
+                return Math.max(0, number); // تجنب الأرقام السالبة
+            }
+
+            function smartFormat(number, isRY) {
+                if (isNaN(number)) return '0.00';
+                
+                if (isRY) {
+                    return number.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                }
+                
+                return number.toLocaleString('en-US', {
+                    minimumFractionDigits: 3,
+                    maximumFractionDigits: 3
+                });
+            }
+
+            function calculatePrices() {
+                document.querySelectorAll('.service-section').forEach(section => {
+                    const title = section.querySelector('.service-title').textContent.trim();
+                    const service = serviceRates[title];
+                    
+                    if (!service) {
+                        console.warn(`لم يتم العثور على معدلات للخدمة: ${title}`);
+                        return;
+                    }
+
+                    section.querySelectorAll('tbody tr').forEach(row => {
+                        const cells = Array.from(row.querySelectorAll('td'));
+                        const quantity = extractNumber(cells[0].textContent);
+                        
+                        const costUSD = quantity * service.costPerUnit;
+                        const suggestedUSD = quantity * service.suggestedPerUnit;
+                        const costRY = costUSD * exchangeRate;
+                        const suggestedRY = suggestedUSD * exchangeRate;
+
+                        // تحديث الخلايا مع التحقق من وجودها
+                        if (cells[1]) cells[1].innerHTML = `${smartFormat(costRY, true)} <span class="currency-symbol">R.Y</span>`;
+                        if (cells[2]) cells[2].innerHTML = `${smartFormat(costUSD, false)} <span class="currency-symbol">USD</span>`;
+                        if (cells[3]) cells[3].innerHTML = `${smartFormat(suggestedRY, true)} <span class="currency-symbol">R.Y</span>`;
+                        if (cells[4]) cells[4].innerHTML = `${smartFormat(suggestedUSD, false)} <span class="currency-symbol">USD</span>`;
+                    });
+                });
+            }
+
+            calculatePrices();
+        });
+    </script>
+</body>
+</html>
+
